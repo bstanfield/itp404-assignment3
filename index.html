@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>subreddit search</title>
+</head>
+<style>
+  body {
+    font-family: Helvetica Neue;
+  }
+
+  h1 {
+    font-size: 18px;
+  }
+  .inline {
+    display: inline;
+  }
+
+  .container {
+    width: 50%;
+    margin: auto;
+  }
+
+  .search-container {
+    width: 50%;
+    margin: auto;
+  }
+
+  #desc {
+    display: none;
+  }
+</style>
+<body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.0.0/handlebars.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+<div class="search-container">
+  Search Subs: <input type="text" id="views">
+  <input type="submit" onclick="getsubs(document.getElementById('views').value)">
+</div>
+<script type="template/handlebars" id="subreddit-template">
+  {{#each data}}
+  <div class="container">
+    <h1> <a href = "{{data.url}}">{{data.title}} </a></h1>
+  </div>
+  <div class="container">
+    <p>Score: {{data.score}}</p>
+  </div>
+  <div class="container">
+    <p>commentCount: {{data.num_comments}}</p>
+  </div>
+  <div class="container">
+      <p>archived: {{data.archived}}{{#if data.archived}}True</p>
+      {{else}}
+      False
+      {{/if}}
+  </div>
+  <div class="container">
+    <button type="button" onclick="togDesc(desc)">Show Description</button>
+  </div>
+  <div class="container">
+    <p id="desc">{{data.selftext}}</p>
+  </div>
+    {{/each}}
+
+</script>
+<script type="text/javascript" src="main.js"></script>
+
+  <div id="response">
+
+  </div>
+</body>
+</html>
